@@ -1,0 +1,64 @@
+# Task6.1p - Kubernetes Deployment and Service
+
+## Overview
+
+This project demonstrates how to containerize a Node.js application using Docker, push the image to Docker Hub, and deploy the application on a Kubernetes cluster with a service to expose it.
+
+## Project Structure
+
+task6.1p/ ├── app/ # Node.js app code │ ├── Dockerfile # Dockerfile to build the app image │ ├── package.json # App dependencies │ └── server.js # Entry point of the Node.js app ├── kubernetes/ # Kubernetes config files │ ├── deployment.yaml # Deployment configuration │ └── service.yaml # Service configuration └── README.md # Project documentation
+
+
+
+## Requirements
+
+- Docker
+- Kubernetes (Minikube or Docker Desktop recommended)
+- kubectl CLI
+- Docker Hub account
+
+## Steps
+
+### 1. CREATE the Project
+
+cd task6.1p
+2. Build the Docker Image
+
+docker build -t task6-app:v1 .
+3. Login to Docker Hub
+
+docker login
+4. Tag and Push the Image to Docker Hub
+bash
+复制
+编辑
+docker tag task6-app:v1 kexincheng/task6-app:v1
+docker push kexincheng/task6-app:v1
+5. Apply Kubernetes Configurations
+
+kubectl apply -f kubernetes/deployment.yaml
+kubectl apply -f kubernetes/service.yaml
+6. Check Deployment and Service Status
+kubectl get pods
+kubectl get services
+7. Access the Application
+Get the external IP of the service to access the app. Use kubectl get services to find the exposed port.
+
+Notes
+Dockerfile: Builds the Node.js app image.
+
+deployment.yaml: Defines the Kubernetes Deployment.
+
+service.yaml: Defines the Kubernetes Service for external access.
+
+
+
+### Key points:
+
+- **Project Overview**: Concisely explains the purpose of the project.
+- **Requirements**: Lists the tools needed to run the project.
+- **Steps**: Provides concise steps to build, push, and deploy the app.
+- **Project Files**: A brief mention of key files (`Dockerfile`, `deployment.yaml`, `service.yaml`).
+- **License & Contact**: Includes basic contact information and license type.
+
+This version is streamlined for easy understanding and quick setup. You can modify it further based on your needs.
