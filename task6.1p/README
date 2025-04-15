@@ -22,26 +22,24 @@ task6.1p/ ├── app/ # Node.js app code │ ├── Dockerfile # Dockerfil
 ### 1. CREATE the Project
 
 cd task6.1p
-2. Build the Docker Image
+###2. Build the Docker Image
 
 docker build -t task6-app:v1 .
-3. Login to Docker Hub
+###3. Login to Docker Hub
 
 docker login
-4. Tag and Push the Image to Docker Hub
-bash
-复制
-编辑
+###4. Tag and Push the Image to Docker Hub
+
 docker tag task6-app:v1 kexincheng/task6-app:v1
 docker push kexincheng/task6-app:v1
-5. Apply Kubernetes Configurations
+###5. Apply Kubernetes Configurations
 
 kubectl apply -f kubernetes/deployment.yaml
 kubectl apply -f kubernetes/service.yaml
-6. Check Deployment and Service Status
+###6. Check Deployment and Service Status
 kubectl get pods
 kubectl get services
-7. Access the Application
+###7. Access the Application
 Get the external IP of the service to access the app. Use kubectl get services to find the exposed port.
 
 Notes
